@@ -1,7 +1,12 @@
-import React from "react";
+import React, { Fragment } from "react";
+import Books from "./components/Books";
 
 const App = () => {
-  return <h1>Book app</h1>;
+  return (
+    <Fragment>
+      <Books />
+    </Fragment>
+  );
 };
 
 export default App;
