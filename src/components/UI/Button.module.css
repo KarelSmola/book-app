@@ -1,0 +1,10 @@
+.button {
+  padding: 1rem 2rem;
+  border: 2px solid transparent;
+  font-size: 1.8rem;
+  font-weight: var(--font-weight-600);
+}
+
+.button:hover {
+  cursor: pointer;
+}

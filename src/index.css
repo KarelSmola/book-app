@@ -1,16 +1,25 @@
 html {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
   font-family: "Inter", sans-serif;
+  font-size: 62.5%;
 }
 
 body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
   --first-color: #363636;
   --second-color: #dc2f2f;
   --third-color: #ff894c;
   --fourth-color: #f8f8f8;
+  --font-weight-300: 300;
+  --font-weight-600: 600;
+  --font-weight-900: 900;
 
-  color: var(--first-color);
-  font-weight: 900;
+  color: var(--fourth-color);
+  font-size: 1.6rem;
+
+  display: flex;
+  justify-content: center;
+  background-color: var(--first-color);
 }

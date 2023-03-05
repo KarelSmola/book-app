@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import GlobalContext from "../store/GlobalContext";
 import NewBook from "./NewBook";
 
-// import classes from "./BookList.module.css";
+import classes from "./BookList.module.css";
 
 const BookList = () => {
   const globalCtx = useContext(GlobalContext);
@@ -12,8 +12,7 @@ const BookList = () => {
   }, []);
 
   return (
-    <div>
-      <button onClick={globalCtx.fetchBooks}>Fetch books</button>
+    <div className={classes["books-container"]}>
       {globalCtx.error && <p>{globalCtx.error}</p>}
       {globalCtx.books.map((book) => (
         <NewBook

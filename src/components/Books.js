@@ -1,15 +1,15 @@
-import React, { Fragment } from "react";
+import React from "react";
 import BookForm from "./BookForm";
 import BookList from "./BookList";
 
-// import classes from "./Books.module.css";
+import classes from "./Books.module.css";
 
 const Books = () => {
   return (
-    <Fragment>
+    <div className={classes.container}>
       <BookForm />
       <BookList />
-    </Fragment>
+    </div>
   );
 };
 

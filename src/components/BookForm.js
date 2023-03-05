@@ -1,16 +1,20 @@
 import React, { useContext } from "react";
 import GlobalContext from "../store/GlobalContext";
 
+import Button from "./UI/Button";
 import classes from "./BookForm.module.css";
 
 const BookForm = () => {
   const globalCtx = useContext(GlobalContext);
 
   return (
-    <form onSubmit={globalCtx.submitHandler}>
-      <div>
-        <label htmlFor="title">Title</label>
+    <form onSubmit={globalCtx.submitHandler} className={classes.form}>
+      <div className={classes["label-container"]}>
+        <label htmlFor="title" className={classes.label}>
+          Title
+        </label>
         <input
+          className={classes.input}
           type="text"
           id="title"
           name="title"
@@ -18,9 +22,12 @@ const BookForm = () => {
           value={globalCtx.enteredValue.title}
         />
       </div>
-      <div>
-        <label htmlFor="author">Author</label>
+      <div className={classes["label-container"]}>
+        <label htmlFor="author" className={classes.label}>
+          Author
+        </label>
         <input
+          className={classes.input}
           type="text"
           id="author"
           name="author"
@@ -28,19 +35,24 @@ const BookForm = () => {
           value={globalCtx.enteredValue.author}
         />
       </div>
-      <div>
-        <label htmlFor="description">Description</label>
+      <div className={classes["label-container"]}>
+        <label htmlFor="description" className={classes.label}>
+          Short description
+        </label>
         <textarea
+          className={classes.textarea}
           type="text"
           id="description"
           name="description"
-          rows={10}
-          cols={40}
+          rows="3"
+          maxLength="160"
           onChange={globalCtx.inputChangeHandler}
           value={globalCtx.enteredValue.description}
         />
       </div>
-      <button>Add Book</button>
+      <Button type="submit" className={classes["add-button"]}>
+        Add Book
+      </Button>
     </form>
   );
 };

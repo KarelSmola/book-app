@@ -1,0 +1,27 @@
+.book-container {
+  padding: 1rem 2rem;
+  background-color: var(--fourth-color);
+  color: var(--first-color);
+}
+
+.title {
+  margin: 0 0 0.5rem 0;
+  text-decoration: underline;
+}
+
+.author {
+  margin: 0 0 1rem 0;
+}
+
+.description {
+  margin: 0 0 2rem 0;
+}
+
+.remove-button {
+  background-color: var(--third-color);
+  color: var(--fourth-color);
+}
+
+.remove-button:hover {
+  background-color: var(--second-color);
+}

@@ -1,0 +1,53 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 2rem;
+  padding: 2rem 4rem;
+  background-color: var(--fourth-color);
+}
+
+label {
+  font-weight: var(--font-weight-600);
+}
+
+.label-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.label {
+  padding: 0.5rem;
+  font-size: 2rem;
+  background-color: var(--third-color);
+  color: var(--first-color);
+}
+
+.input,
+.textarea {
+  padding: 1rem;
+  font-size: 1.6rem;
+  border: 1px solid var(--first-color);
+}
+
+.textarea {
+  resize: none;
+}
+
+.input:focus,
+.textarea:focus {
+  outline: none;
+  border: 1px solid var(--third-color);
+}
+
+.add-button {
+  background-color: var(--first-color);
+  color: var(--third-color);
+}
+
+.add-button:hover {
+  background-color: var(--third-color);
+  color: var(--first-color);
+}
