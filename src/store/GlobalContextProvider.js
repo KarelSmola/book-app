@@ -16,6 +16,10 @@ const bookReducer = (state, action) => {
     };
   }
 
+  if (action.type === "ACTIVATE_BLUR") {
+    return { ...state, blur: { title: true, author: true, description: true } };
+  }
+
   if (action.type === "BLUR") {
     return { ...state, blur: { ...state.blur, ...action.payload } };
   }
@@ -118,8 +122,10 @@ const GlobalContextProvider = (props) => {
   const submitHandler = (event) => {
     event.preventDefault();
 
+    dispatch({ type: "ACTIVATE_BLUR" });
+
     if (!titleIsValid || !authorIsValid || !descriptionIsValid) {
-      console.log("Write correct input");
+      dispatch({ type: "BLUR" });
       return;
     }
 
@@ -135,14 +141,12 @@ const GlobalContextProvider = (props) => {
     dispatch({ type: "RESET" });
   };
 
-  const removeBook = (bookId) => {
-    const deleteBook = async () => {
-      await fetch(
-        `https://book-app-2f931-default-rtdb.europe-west1.firebasedatabase.app/books/${bookId}.json/`,
-        { method: "DELETE" }
-      );
-    };
-    deleteBook();
+  const removeBook = async (bookId) => {
+    await fetch(
+      `https://book-app-2f931-default-rtdb.europe-west1.firebasedatabase.app/books/${bookId}.json/`,
+      { method: "DELETE" }
+    );
+
     dispatch({ type: "REMOVE_BOOK", payload: bookId });
   };
 

@@ -6,16 +6,18 @@ import classes from "./BookList.module.css";
 
 const BookList = () => {
   const globalCtx = useContext(GlobalContext);
+  const { fetchBooks } = globalCtx;
 
   useEffect(() => {
-    globalCtx.fetchBooks();
-  }, []);
+    fetchBooks();
+  }, [fetchBooks]);
 
   return (
     <div className={classes["books-container"]}>
       {globalCtx.error && <p>{globalCtx.error}</p>}
       {globalCtx.books.map((book) => (
         <NewBook
+          key={book.id}
           id={book.id}
           title={book.title}
           author={book.author}

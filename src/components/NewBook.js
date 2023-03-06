@@ -8,7 +8,7 @@ const NewBook = (props) => {
   const globalCtx = useContext(GlobalContext);
 
   return (
-    <div key={props.id} className={classes["book-container"]}>
+    <div className={classes["book-container"]}>
       <h1 className={classes.title}>{props.title}</h1>
       <h3 className={classes.author}>{props.author}</h3>
       <p className={classes.description}>{props.description}</p>
