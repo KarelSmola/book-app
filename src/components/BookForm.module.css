@@ -42,6 +42,11 @@ label {
   border: 1px solid var(--third-color);
 }
 
+.invalid {
+  background-color: pink;
+  border: 1px solid var(--second-color);
+}
+
 .add-button {
   background-color: var(--first-color);
   color: var(--third-color);

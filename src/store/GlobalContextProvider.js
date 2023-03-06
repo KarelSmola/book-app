@@ -16,6 +16,10 @@ const bookReducer = (state, action) => {
     };
   }
 
+  if (action.type === "BLUR") {
+    return { ...state, blur: { ...state.blur, ...action.payload } };
+  }
+
   if (action.type === "ADD_NEW_BOOK") {
     const sendData = async () => {
       await fetch(url, {
@@ -44,6 +48,7 @@ const bookReducer = (state, action) => {
     return {
       ...state,
       enteredValue: { title: "", author: "", description: "" },
+      blur: { title: false, author: false, description: false },
     };
   }
 
@@ -56,6 +61,7 @@ const bookReducer = (state, action) => {
 
 const initialState = {
   enteredValue: { title: "", author: "", description: "" },
+  blur: { title: false, author: false, description: false },
   books: [],
   error: null,
 };
@@ -70,7 +76,7 @@ const GlobalContextProvider = (props) => {
       if (!response.ok) {
         throw new Error("Something went wrong");
       }
-      console.log(response);
+
       const data = await response.json();
       let laodedBooks = [];
       for (const key in data) {
@@ -94,8 +100,28 @@ const GlobalContextProvider = (props) => {
     dispatch({ type: "NEW_INPUT", payload: { [name]: value } });
   };
 
+  const blurChangeHandler = (event) => {
+    const name = event.target.name;
+
+    dispatch({ type: "BLUR", payload: { [name]: true } });
+  };
+
+  const titleIsValid = state.enteredValue.title !== "";
+  const titleIsInvalid = !titleIsValid && state.blur.title;
+
+  const authorIsValid = state.enteredValue.author !== "";
+  const authorIsInvalid = !authorIsValid && state.blur.author;
+
+  const descriptionIsValid = state.enteredValue.description !== "";
+  const descriptionIsInvalid = !descriptionIsValid && state.blur.description;
+
   const submitHandler = (event) => {
     event.preventDefault();
+
+    if (!titleIsValid || !authorIsValid || !descriptionIsValid) {
+      console.log("Write correct input");
+      return;
+    }
 
     const newBook = {
       id: new Date().getTime(),
@@ -123,6 +149,7 @@ const GlobalContextProvider = (props) => {
   const initial = {
     fetchBooks,
     inputChangeHandler,
+    blurChangeHandler,
     submitHandler,
     enteredValue: {
       title: state.enteredValue.title,
@@ -132,6 +159,9 @@ const GlobalContextProvider = (props) => {
     books: state.books,
     removeBook,
     error: state.error,
+    titleIsInvalid,
+    authorIsInvalid,
+    descriptionIsInvalid,
   };
 
   return (

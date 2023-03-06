@@ -7,6 +7,18 @@ import classes from "./BookForm.module.css";
 const BookForm = () => {
   const globalCtx = useContext(GlobalContext);
 
+  const titleInputClasses = globalCtx.titleIsInvalid
+    ? `${classes.input} ${classes.invalid}`
+    : `${classes.input}`;
+
+  const authorInputClasses = globalCtx.authorIsInvalid
+    ? `${classes.input} ${classes.invalid}`
+    : `${classes.input}`;
+
+  const descriptionInputClasses = globalCtx.descriptionIsInvalid
+    ? `${classes.input} ${classes.invalid}`
+    : `${classes.input}`;
+
   return (
     <form onSubmit={globalCtx.submitHandler} className={classes.form}>
       <div className={classes["label-container"]}>
@@ -14,11 +26,12 @@ const BookForm = () => {
           Title
         </label>
         <input
-          className={classes.input}
+          className={titleInputClasses}
           type="text"
           id="title"
           name="title"
           onChange={globalCtx.inputChangeHandler}
+          onBlur={globalCtx.blurChangeHandler}
           value={globalCtx.enteredValue.title}
         />
       </div>
@@ -27,11 +40,12 @@ const BookForm = () => {
           Author
         </label>
         <input
-          className={classes.input}
+          className={authorInputClasses}
           type="text"
           id="author"
           name="author"
           onChange={globalCtx.inputChangeHandler}
+          onBlur={globalCtx.blurChangeHandler}
           value={globalCtx.enteredValue.author}
         />
       </div>
@@ -40,13 +54,14 @@ const BookForm = () => {
           Short description
         </label>
         <textarea
-          className={classes.textarea}
+          className={descriptionInputClasses}
           type="text"
           id="description"
           name="description"
           rows="3"
           maxLength="160"
           onChange={globalCtx.inputChangeHandler}
+          onBlur={globalCtx.blurChangeHandler}
           value={globalCtx.enteredValue.description}
         />
       </div>
